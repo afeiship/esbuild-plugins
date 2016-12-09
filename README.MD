@@ -15,7 +15,8 @@
   <vue-ios7-switch :checked="false"/>
   <vue-ios7-switch size="20px" theme="blue" :checked="true" />
   <vue-ios7-switch size="30px" :checked="false" />
-  <vue-ios7-switch size="200px" theme="green" :checked="true" />
+  <vue-ios7-switch size="100px" theme="green" :checked="true" />
+  <vue-ios7-switch size="120px" theme="blue" :checked="true" :disabled=true />
 </div>
 ```
 
@@ -23,3 +24,4 @@
 - [x] size (20px/30px/...)
 - [x] theme ('blue'|'green')
 - [x] checked (true|false)
+- [x] disabled (true|false)
