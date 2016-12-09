@@ -11,6 +11,13 @@ Vue.config.devtools = true
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: '<div><vue-ios7-switch>Hello</vue-ios7-switch></div>',
+  template: `
+    <div>
+      <vue-ios7-switch :checked="false"/>
+      <vue-ios7-switch size="20px" theme="blue" :checked="true" />
+      <vue-ios7-switch size="30px" :checked="false" />
+      <vue-ios7-switch size="200px" theme="green" :checked="true" />
+    </div>
+  `,
   components: { VueIos7Switch }
 })

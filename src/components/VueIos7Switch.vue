@@ -1,38 +1,30 @@
 <template>
-  <button class="vue-ios7-switch" v-on:click="_click()" :type="type">
-    <i>ICON</i>
-    <slot></slot>
-  </button>
+  <label
+    :data-theme="theme"
+    :style="{
+      'font-size':size
+    }"
+    :class="['vue-ios7-switch',cssClass]">
+    <input type="checkbox" :checked="checked">
+    <span></span>
+  </label>
 </template>
 
 <script>
   export default {
     name: 'vue-ios7-switch',
     props:{
-      type:{
+      cssClass:String,
+      checked:Boolean,
+      size:String,
+      theme:{
         type:String,
-        default:'vue-ios7-switch'
-      }
-    },
-    methods:{
-      _click:function(){
-        alert('Hello YO VUE!');
+        default:'green'
       }
     }
   };
 </script>
 
-<style lang="scss">
-  .vue-ios7-switch{
-    border:none;
-    background: #999;
-    padding:10px;
-    font-size: 12px;
-    color:#333;
-    border-radius: 4px;
-    i{
-      color:#00f;
-      font-size: 8px;
-    }
-  }
+<style lang="sass">
+  @import "./style.scss"
 </style>
