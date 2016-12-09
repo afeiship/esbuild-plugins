@@ -6,3 +6,20 @@
 + http://www.cnblogs.com/Kummy/p/4966937.html
 + https://github.com/steven5538/vue-button
 + https://yarnpkg.com/en/docs/install
++ http://abpetkov.github.io/switchery/
++ http://wd.dizaina.net/en/experiments/ios7-style-switch/
+
+## usage:
+```
+<div>
+  <vue-ios7-switch :checked="false"/>
+  <vue-ios7-switch size="20px" theme="blue" :checked="true" />
+  <vue-ios7-switch size="30px" :checked="false" />
+  <vue-ios7-switch size="200px" theme="green" :checked="true" />
+</div>
+```
+
+## options:
+- [x] size (20px/30px/...)
+- [x] theme ('blue'|'green')
+- [x] checked (true|false)
