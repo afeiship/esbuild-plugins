@@ -35,8 +35,12 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
         // 读取文件内容
         const contents = await fs.promises.readFile(args.path, 'utf-8');
 
-        // 替换匹配的内容为 version
-        const replacedContents = contents.replace(matchContent, version);
+        // 修改替换逻辑，使用函数作为 replace 的第二个参数
+        const replacedContents = contents.replace(matchContent, (match, p1) => {
+          // match 是完整匹配的字符串，p1 是第一个捕获组
+          // 将原始字符串中的版本号部分替换为新的版本号，保留其他部分
+          return match.replace(p1, version);
+        });
 
         // 返回处理后的内容
         return {
