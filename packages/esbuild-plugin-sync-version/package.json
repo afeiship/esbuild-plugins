@@ -1,6 +1,6 @@
 {
   "name": "@jswork/esbuild-plugin-sync-version",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Esbuild sync verion plugin.",
   "npmClient": "pnpm",
   "main": "dist/index.cjs.js",
