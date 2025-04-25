@@ -1,9 +1,8 @@
-import { defineConfig, Options } from 'tsup';
+import { defineConfig } from 'tsup';
 import tsupBanner from '@jswork/tsup-banner';
-import { umdWrapper } from 'esbuild-plugin-umd-wrapper';
-import { replace } from 'esbuild-plugin-replace';
 
-const baseOptions: Options = {
+
+export default defineConfig({
   entry: ['src/index.ts'],
   clean: true,
   format: ['cjs', 'esm'],
@@ -19,12 +18,6 @@ const baseOptions: Options = {
     return {
       js: `.${format}.js`
     };
-  }
-};
-
-export default defineConfig([
-  {
-    ...baseOptions,
-    splitting: true
-  }
-]);
+  },
+  splitting: true
+});
