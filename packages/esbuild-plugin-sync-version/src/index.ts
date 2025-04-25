@@ -8,16 +8,20 @@ interface PluginOptions {
   matchContent?: RegExp; // 匹配内容的正则表达式，默认匹配 __VERSION__
 }
 
+const defaults: PluginOptions = {
+  cwd: process.cwd(),
+  matchContent: /(\d+\.\d+\.\d+)/g
+};
+
 // 插件主函数
 function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
-  const { matchContent = /__VERSION__/g } = options;
+  const { matchContent, cwd } = { ...defaults, ...options };
 
   return {
     name: 'esbuild-plugin-sync-version', // 插件名称
     setup(build) {
-      const cwd = options.cwd || process.cwd();
       // 获取 package.json 的路径
-      const packageJsonPath = path.resolve(cwd, 'package.json');
+      const packageJsonPath = path.resolve(cwd!, 'package.json');
 
       // 读取 package.json 并提取 version 字段
       let version: string;
@@ -38,7 +42,7 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
         const contents = await fs.promises.readFile(args.path, 'utf-8');
 
         // 修改替换逻辑，使用函数作为 replace 的第二个参数
-        const replacedContents = contents.replace(matchContent, (match, p1) => {
+        const replacedContents = contents.replace(matchContent!, (match, p1) => {
           // match 是完整匹配的字符串，p1 是第一个捕获组
           // 将原始字符串中的版本号部分替换为新的版本号，保留其他部分
           return match.replace(p1, version);
