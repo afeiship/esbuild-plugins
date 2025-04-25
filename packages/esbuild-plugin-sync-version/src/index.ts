@@ -12,7 +12,7 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
   const { matchContent = /__VERSION__/g } = options;
 
   return {
-    name: 'custom-esbuild-plugin', // 插件名称
+    name: 'esbuild-plugin-sync-version', // 插件名称
     setup(build) {
       // 获取 package.json 的路径
       const packageJsonPath = path.resolve(process.cwd(), 'package.json');
@@ -26,7 +26,7 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
         }
         version = packageJson.version;
       } catch (err) {
-        console.error('读取 package.json 失败:', err.message);
+        console.error('读取 package.json 失败:', (err as any).message);
         process.exit(1);
       }
 
@@ -41,10 +41,10 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
         // 返回处理后的内容
         return {
           contents: replacedContents,
-          loader: 'default', // 保持默认加载器
+          loader: 'default' // 保持默认加载器
         };
       });
-    },
+    }
   };
 }
 
