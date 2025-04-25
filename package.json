@@ -13,6 +13,6 @@
     "lerna:bootstrap": "lerna bootstrap",
     "build": "lerna run build --since main --no-private",
     "build:all": "lerna run build",
-    "publish": "npm run build && lerna publish --no-private"
+    "publish": "npm run build && lerna publish --no-private --yes"
   }
 }
