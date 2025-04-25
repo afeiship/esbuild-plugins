@@ -4,6 +4,7 @@ import path from 'path';
 
 // 定义插件选项的类型
 interface PluginOptions {
+  cwd?: string;
   matchContent?: RegExp; // 匹配内容的正则表达式，默认匹配 __VERSION__
 }
 
@@ -14,8 +15,9 @@ function createEsbuildPlugin(options: PluginOptions = {}): Plugin {
   return {
     name: 'esbuild-plugin-sync-version', // 插件名称
     setup(build) {
+      const cwd = options.cwd || process.cwd();
       // 获取 package.json 的路径
-      const packageJsonPath = path.resolve(process.cwd(), 'package.json');
+      const packageJsonPath = path.resolve(cwd, 'package.json');
 
       // 读取 package.json 并提取 version 字段
       let version: string;
