@@ -13,11 +13,30 @@ yarn add @jswork/esbuild-plugin-iife
 
 ## usage
 ```js
-import tsupLibrary from '@jswork/esbuild-plugin-iife';
+import { defineConfig } from 'tsup';
+import tsupBanner from '@jswork/tsup-banner';
+import iifeEsbuildPlugin from '@jswork/esbuild-plugin-iife';
 
-tsupLibrary(1024);
-
-// [1000, 0, 20, 4]
+export default defineConfig({
+  entry: ['src/index.ts'],
+  clean: true,
+  format: ['cjs', 'esm', 'iife'],
+  tsconfig: './tsconfig.json',
+  dts: true,
+  splitting: true,
+  sourcemap: true,
+  cjsInterop: true,
+  // external: ['react', 'react-dom'],
+  banner: {
+    js: tsupBanner()
+  },
+  esbuildPlugins: [iifeEsbuildPlugin({ globalName: 'sayHi' })],
+  outExtension({ format }) {
+    return {
+      js: `.${format}.js`
+    };
+  }
+});
 ```
 
 ## license
